@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Document</title>
+
+    <style>
+        p {
+            display: inline-block;
+            margin: 0;
+        }   
+
+
+        .completed .todoText {
+            opacity: 0.5;
+            text-decoration: line-through;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .todos{
+            padding: 0;
+            margin: 0;
+        }
+
+        .todoItem{
+            margin-top: 10px;
+        }
+
+        .deleteButton{
+            margin-left: 5px;
+        }
+
+        .todoText{
+            margin-left: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>To-do List</h1>
+    <div class="inputContents">
+        <input type="text" class="todoInput" placeholder="Wash the dishes" />
+        <!-- input ve button tüm satırı kaplamadığı için css yazmadan yan yana geldi -->
+        <button class="addTask">Add</button>
+    </div>
+    <ul class="todos"></ul>
+
+    <script>
+        
+   
+
+        // add butonuna tıklanıp tıklanmadığını dinle
+        // tıklandığında, inputun içeriğini al
+        // git yeni bir tane item elementi oluştur
+        // ve git bunu DOM'un içine ekle
+
+        console.log("Hello World");
+
+        const addTaskButton = document.querySelector(".addTask");
+        const todoInput = document.querySelector(".todoInput");
+        const todosContainer = document.querySelector(".todos");
+
+        const toggleComplete = (event) => {
+            event.currentTarget.parentElement.classList.toggle("completed");
+        }
+
+        const removeItem = (event) => {
+            event.currentTarget.parentElement.remove();
+        }
+
+        const renderTodoItem = (todoText) => {
+            const todoItemElement = document.createElement("li"); // li elementi oluşturduk
+            todoItemElement.classList.add("todoItem"); // oluşturduğumuz li elementine todoItem class'ını ekledik
+
+
+
+            const completeButton = document.createElement("button");
+            completeButton.classList.add("completeButton");
+            completeButton.innerText = "Complete";
+            completeButton.addEventListener("click", toggleComplete)
+            todoItemElement.appendChild(completeButton); // oluşturduğumuz button elementini li elementinin içine ekledik
+
+            const deleteButton = document.createElement("button");
+            deleteButton.classList.add("deleteButton");
+            deleteButton.innerText = "Delete";
+            deleteButton.addEventListener("click", removeItem)
+            todoItemElement.appendChild(deleteButton); // oluşturduğumuz button elementini li elementinin içine ekledik
+
+            const textElement = document.createElement('p');
+            textElement.innerText = todoText;
+            textElement.classList.add("todoText");
+
+            todoItemElement.appendChild(textElement); // oluşturduğumuz p elementini li elementinin içine ekledik
+
+            todosContainer.appendChild(todoItemElement); // oluşturduğumuz li elementini ul elementinin içine ekledik
+
+            todoInput.value = ""; // inputun içini boşalttık
+            todoInput.focus(); // inputa odaklandık
+        }
+
+        const addTask = () => {
+            if (todoInput.value === "") {
+                alert("Input boş olamaz")
+            } else {
+                renderTodoItem(todoInput.value)
+            }
+
+        }
+
+        addTaskButton.addEventListener("click", addTask)
+
+
+
+
+
+
+
+
+
+
+        
+
+        todoInput.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+        addTask();
+    }
+});
+
+    </script>
+</body>
+
+</html>

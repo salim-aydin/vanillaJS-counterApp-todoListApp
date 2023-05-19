@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button class="azalt">Azalt</button>
+    <h1 id="numara">0</h1>
+    <button class="arttir">Arttır</button>
+
+
+    <script>
+        const increaseButton = document.querySelector(".arttir");
+        const decreaseButton = document.querySelector(".azalt");
+        const number = document.querySelector("#numara");
+
+        let initialNumber = 0;
+
+        increaseButton.addEventListener("click", () => {
+            initialNumber++;
+            number.innerHTML = `<i>${initialNumber}</i>`
+        })
+
+
+
+        decreaseButton.addEventListener("click", () => {
+            initialNumber--;
+            number.innerHTML = `<i>${initialNumber}</i>`
+        })
+
+
+    </script>
+</body>
+</html>
